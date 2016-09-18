@@ -7,7 +7,7 @@ import json
 import urllib2
 
 class AdvancedUserRecipe1473929478(BasicNewsRecipe):
-    server = "http://localhost"
+    server = "http://drbaumert/nwz"
     title          = 'Nordwest Zeitung'
     __author__     = 'jhbruhn'
     publication_type = 'newspaper'
@@ -40,8 +40,8 @@ class AdvancedUserRecipe1473929478(BasicNewsRecipe):
                  .p-ipad {font-style: normal !important;}'
 
     def get_feeds(self):
-        sections = json.load(urllib2.urlopen(server + '/today/sections.json'))
+        sections = json.load(urllib2.urlopen(self.server + '/today/sections.json'))
         feeds = []
         for section in sections:
-            feeds.append((section, server + '/today/feed-'+ section + '.xml'))
+            feeds.append((section, self.server + '/today/feed-' + section + '.xml'))
         return feeds
