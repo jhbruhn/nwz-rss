@@ -1,0 +1,25 @@
+{
+  "name": "nwz-rss",
+  "version": "1.0.0",
+  "description": "Generate RSS from NWZ epepepepeparers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "nwz": "index.js"
+  }
+  "author": "jhbruhn",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.1",
+    "cheerio": "^0.22.0",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "optimist": "^0.6.1",
+    "progress": "^1.1.8",
+    "request": "^2.74.0",
+    "rss": "^1.2.1",
+    "symlink-or-copy": "^1.1.6"
+  }
+}
