@@ -1,0 +1,47 @@
+#!/usr/bin/env python2
+# vim:fileencoding=utf-8
+from __future__ import unicode_literals, division, absolute_import, print_function
+from calibre.web.feeds.news import BasicNewsRecipe
+from datetime import date
+import json
+import urllib2
+
+class AdvancedUserRecipe1473929478(BasicNewsRecipe):
+    server = "http://localhost"
+    title          = 'Nordwest Zeitung'
+    __author__     = 'jhbruhn'
+    publication_type = 'newspaper'
+    oldest_article = 7
+    use_embedded_content = True
+    max_articles_per_feed = 100
+    auto_cleanup   = False
+    auto_cleanup_keep = '//img[@class="image"]|//*[@class="unterzeile-ipad"]'
+    compress_news_images = True
+    masthead_url   = server + '/masthead.gif'
+
+    year = str(date.today().isocalendar()[0])
+    month = str(date.today().month).zfill(2)
+    day = str(date.today().day).zfill(2)
+
+    cover_url = 'http://www.nwzonline.de/NWZ/ePaperIssue/epaper/NWZOnline/' + \
+        year + month + day + '/NWZ/Olde%20N/fp_Preview/1_H_PORTRAIT.jpg'
+
+    extra_css = '.unterzeile-ipad  {font-size: 0.9em; font-style: italic; } \
+                 .headline {font-size: 1.3em; } \
+                 .p-ipad {font-style: normal;} \
+                 .vorspann-im-text-ipad {font-style: italic;} \
+                 .frage-ipad {font-style: italic; !important} \
+                 .antwort-ipad {font-style: normal;} \
+                 .name-ipad {font-weight: 700; font-style: bold; !important text-transform: uppercase; display: inline; !important} \
+                 stichwort {text-transform: uppercase !important;} \
+                 .autor-ipad {text-transform: uppercase;} \
+                 .ortsmarke-ipad {font-style: bold; !important text-transform: uppercase; display: inline-block; !important } \
+                 .autorenkuerzel-ipad {display: inline; text-transform: uppercase;} \
+                 .p-ipad {font-style: normal !important;}'
+
+    def get_feeds(self):
+        sections = json.load(urllib2.urlopen(server + '/today/sections.json'))
+        feeds = []
+        for section in sections:
+            feeds.append((section, server + '/today/feed-'+ section + '.xml'))
+        return feeds
