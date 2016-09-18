@@ -278,9 +278,10 @@ function generateFeed(id, title, feedUrl, articles) {
 
   for (var title in articles) {
     var article = articles[title];
+    var articleUrl = archive ? url + "/" + id + "/" + article.storyId + ".html" : url + "/today/" + article.storyId + ".html"
     feed.item({
       title: title,
-      url: url + "/" + id + "/" + article.storyId + ".html",
+      url: articleUrl,
       guid: article.storyId,
       description: article.body,
       categories: [article.section]
