@@ -153,10 +153,11 @@ var transformArticleBody = function(id, sysDate, page, storyId, body, cb) {
     var storyId = imageId.split("@")[1];
     imageId = imageId.split("@")[0];
 
-    var imageFilename = getOutputFolderPath(archive ? id : "today") + "/images/" + imageId + ".jpg";
+    var imageFilename = getOutputFolderPath(id) + "/images/" + imageId + ".jpg";
+    var imageThing = archive ? id : "today";
     downloadPicture(id, sysDate, page, storyId, imageId, imageFilename, function() {
       image.prepend(function(index) {
-        if(index == 0) return "<img class='image' src='" + url + "/" + id + "/images/" + imageId + ".jpg" + "' />";
+        if(index == 0) return "<img class='image' src='" + url + "/" + imageThing + "/images/" + imageId + ".jpg" + "' />";
         return "";
       });
 
@@ -278,7 +279,10 @@ function generateFeed(id, title, feedUrl, articles) {
 
   for (var title in articles) {
     var article = articles[title];
-    var articleUrl = archive ? url + "/" + id + "/" + article.storyId + ".html" : url + "/today/" + article.storyId + ".html"
+    var articleUrl = url + "/today/" + article.storyId + ".html";
+    if(archive) {
+      articleUrl = url + "/" + id + "/" + article.storyId + ".html"
+    }
     feed.item({
       title: title,
       url: articleUrl,
