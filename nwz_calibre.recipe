@@ -43,5 +43,5 @@ class AdvancedUserRecipe1473929478(BasicNewsRecipe):
         sections = json.load(urllib2.urlopen(self.server + '/today/sections.json'))
         feeds = []
         for section in sections:
-            feeds.append((section, self.server + '/today/feed-' + section + '.xml'))
+            feeds.append((section, self.server + '/today/feed-' + section.replace(" ", "_").replace("&", "und") + '.xml'))
         return feeds

@@ -124,6 +124,10 @@ var getOutputFolderPath = function(id) {
   return outputFolder + id;
 }
 
+var sanitizeName = function(name) {
+  return name.replace(/\s/g, '_').replace("&", "und");
+}
+
 var transformArticleBody = function(id, sysDate, page, storyId, body, cb) {
   if(body == undefined) return "";
   var $ = cheerio.load(body, {
@@ -242,7 +246,7 @@ var generateEverything = function(id, articles, sections, cb) {
 
     var xml = generateFeed(id, i == 0 ? "NWZ" : "NWZ - " + section, url, sectionArticles)
 
-    fs.writeFile(getOutputFolderPath(id) + "/feed-" + section + ".xml", xml, function(err) {
+    fs.writeFile(getOutputFolderPath(id) + "/feed-" + sanitizeName(section) + ".xml", xml, function(err) {
       if(err) {
         return console.error(err);
       }
