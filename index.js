@@ -30,7 +30,7 @@ var argv = optimist
           .default('b', 'http://localhost:8000')
           .alias('a', 'archive')
           .describe('a', 'Whether the issues should be archived or only the current issue should get saved.')
-          .default('a', true)
+          .default('a', false)
           .argv;
 
 var username = argv.u;
