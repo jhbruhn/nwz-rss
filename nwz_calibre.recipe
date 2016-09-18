@@ -26,18 +26,49 @@ class AdvancedUserRecipe1473929478(BasicNewsRecipe):
     cover_url = 'http://www.nwzonline.de/NWZ/ePaperIssue/epaper/NWZOnline/' + \
         year + month + day + '/NWZ/Olde%20N/fp_Preview/1_H_PORTRAIT.jpg'
 
-    extra_css = '.unterzeile-ipad  {font-size: 0.9em; font-style: italic; } \
-                 .headline {font-size: 1.3em; } \
-                 .p-ipad {font-style: normal;} \
-                 .vorspann-im-text-ipad {font-style: italic;} \
-                 .frage-ipad {font-style: italic; !important} \
-                 .antwort-ipad {font-style: normal;} \
-                 .name-ipad {font-weight: 700; font-style: bold; !important text-transform: uppercase; display: inline; !important} \
-                 stichwort {text-transform: uppercase !important;} \
-                 .autor-ipad {text-transform: uppercase;} \
-                 .ortsmarke-ipad {font-style: bold; !important text-transform: uppercase; display: inline-block; !important } \
-                 .autorenkuerzel-ipad {display: inline; text-transform: uppercase;} \
-                 .p-ipad {font-style: normal !important;}'
+    extra_css = """ .unterzeile-ipad  {
+                        font-size: 0.9em;
+                        font-style: italic;
+                    } 
+                    .headline {
+                        font-size: 1.3em;
+                    } 
+                    .p-ipad {
+                        font-style: normal;
+                    } 
+                    .vorspann-im-text-ipad {
+                        font-style: italic;
+                    } 
+                    .frage-ipad {
+                        font-style: italic !important;
+                    } 
+                    .antwort-ipad {
+                        font-style: normal;
+                    } 
+                    .name-ipad {
+                        font-weight: 700;
+                        font-style: bold !important;
+                        text-transform: uppercase;
+                        display: inline !important;
+                    } 
+                    stichwort {
+                        text-transform: uppercase !important;
+                    } 
+                    .autor-ipad {
+                        text-transform: uppercase;
+                    } 
+                    .ortsmarke-ipad {
+                        font-style: bold !important;
+                        text-transform: uppercase;
+                        display: inline-block !important;
+                    } 
+                    .autorenkuerzel-ipad {
+                        display: inline;
+                        text-transform: uppercase;
+                    } 
+                    .p-ipad {
+                        font-style: normal !important;
+                    }"""
 
     def get_feeds(self):
         sections = json.load(urllib2.urlopen(self.server + '/today/sections.json'))
