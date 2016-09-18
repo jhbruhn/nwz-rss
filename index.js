@@ -28,12 +28,16 @@ var argv = optimist
           .alias('b', 'base')
           .describe('b', 'Base URL for generated Feed')
           .default('b', 'http://localhost:8000')
+          .alias('a', 'archive')
+          .describe('a', 'Whether the issues should be archived or only the current issue should get saved.')
+          .default('a', true)
           .argv;
 
 var username = argv.u;
 var password = argv.p;
 var outputFolder = argv.o;
 var url = argv.b;
+var archive = argv.a;
 
 var deleteFolderRecursive = function(path) {
   if( fs.existsSync(path) ) {
@@ -311,6 +315,9 @@ authenticate(username, password, function(error, response, body) {
               ncp(getOutputFolderPath(desiredId), outputFolder + "/today/", function (err) {
                 if (err) {
                   return console.error(err);
+                }
+                if(!archive) {
+                  deleteFolderRecursive(getOutputFolderPath(desiredId));
                 }
                 console.log('Done!');
               });
