@@ -20,6 +20,5 @@
     "progress": "^1.1.8",
     "request": "^2.74.0",
     "rss": "^1.2.1",
-    "symlink-or-copy": "^1.1.6"
   }
 }
