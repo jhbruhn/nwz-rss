@@ -8,7 +8,7 @@
   },
   "bin": {
     "nwz": "index.js"
-  }
+  },
   "author": "jhbruhn",
   "license": "MIT",
   "dependencies": {
