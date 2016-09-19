@@ -1,6 +1,6 @@
 {
   "name": "nwz-rss",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Generate RSS from NWZ epepepepeparers",
   "main": "index.js",
   "scripts": {
